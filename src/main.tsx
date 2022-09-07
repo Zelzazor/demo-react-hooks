@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import App from './App'
 import { Home, State } from './pages'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} >
@@ -13,7 +15,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           <Route path="use-state" element={<State />} />
         </Route>
       </Routes>
+      <ToastContainer />
     </BrowserRouter>
 
-  </React.StrictMode>
+  // </React.StrictMode>
 )
