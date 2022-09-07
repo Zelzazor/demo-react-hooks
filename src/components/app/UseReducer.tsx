@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 interface IState {
     count: number;
+    toggle: boolean;
 }
 
 interface IActions {
@@ -11,7 +12,7 @@ interface IActions {
 }
 
 
-const initialState = {count: 0};
+const initialState: IState = {count: 0, toggle: false};
 
 const reducer = (state: IState, action: IActions) => {
     switch(action.type) {
@@ -19,20 +20,25 @@ const reducer = (state: IState, action: IActions) => {
             return {...state, count: action.value ? state.count + action.value : state.count + 1};
         case 'decrement':
             return {...state, count: action.value ? state.count - action.value: state.count - 1};
+        case 'toggle':
+            return {...state, toggle: !state.toggle};
         default:
-            throw new Error("Invalid Operation");
+            return state;
     }
 }
 
 
-export const UseReducer = () => {
+export const UseReducer = ({noLink = false}) => {
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
     return (
         <div className="card" style={{ width: "18rem" }}>
             <div className="text-center">
-                {state.count}
+                {state.count}{" "}{state.toggle?"ON":"OFF"}
+            </div>
+            <div className="d-flex justify-content-center mb-3">
+                <button className="btn btn-primary" onClick={()=>dispatch({type: "toggle"})}>Actualizar</button>
             </div>
             <div className="buttons d-flex justify-content-around">
                 <button className="btn btn-primary w-25" onClick={() => dispatch({type: "decrement", value: 2})}>-</button>
@@ -46,9 +52,9 @@ export const UseReducer = () => {
                 <p className="card-text">
                     Maneja estados complejos en componentes funcionales.
                 </p>
-            <Link className="btn btn-primary" to="use-effect">
+            {!noLink && <Link className="btn btn-primary" to="use-reducer">
                 Más detalles
-            </Link>
+            </Link>}
   </div>
 </div>
 

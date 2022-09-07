@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 
-export const UseEffect = () => {
+export const UseEffect = ({noLink = false}) => {
 
     const [toggle, setToggle] = useState(false);
     
@@ -37,9 +37,9 @@ export const UseEffect = () => {
                 <p className="card-text">
                     Maneja eventos del ciclo de vida del componente funcional.
                 </p>
-            <Link className="btn btn-primary" to="use-effect">
+            {!noLink && <Link className="btn btn-primary" to="use-effect">
                 Más detalles
-            </Link>
+            </Link>}
   </div>
 </div>
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 
-export const UseState = () => {
+export const UseState = ({noLink = false}) => {
     const [count, setCount] = useState(0);
 
     return (
@@ -19,9 +19,9 @@ export const UseState = () => {
                 <p className="card-text">
                     Maneja estado en componentes funcionales.
                 </p>
-            <Link className="btn btn-primary" to="use-state">
+            {!noLink && <Link className="btn btn-primary" to="use-state">
                 Más detalles
-            </Link>
+            </Link>}
   </div>
 </div>
 
